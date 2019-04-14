@@ -1,1 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><navigation xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    xmlns:tools="http://schemas.android.com/tools"    android:id="@+id/nav"    app:startDestination="@id/login">    <fragment        android:id="@+id/login"        android:name="com.example.hospital.login.Login"        android:label="fragment_login"        tools:layout="@layout/fragment_login" >        <action            android:id="@+id/action_login_to_patient"            app:destination="@id/patient" />        <action            android:id="@+id/action_login_to_signup"            app:destination="@id/signup" />    </fragment>    <fragment        android:id="@+id/patient"        android:name="com.example.hospital.Patient"        android:label="fragment_patient"        tools:layout="@layout/fragment_patient" >        <action            android:id="@+id/action_patient_to_patient_fragment2"            app:destination="@id/patient_fragment2" />        <action            android:id="@+id/action_patient_to_doctor_fragment2"            app:destination="@id/doctor_fragment2" />        <action            android:id="@+id/action_patient_to_login"            app:destination="@id/login" />    </fragment>    <fragment        android:id="@+id/signup"        android:name="com.example.hospital.signup.Signup"        android:label="fragment_signup"        tools:layout="@layout/fragment_signup"        >        <action            android:id="@+id/action_signup_to_login"            app:destination="@id/login" />    </fragment>    <fragment        android:id="@+id/patient_fragment2"        android:name="com.example.hospital.patient_fragment.Patient_fragment"        android:label="fragment_patient_fragment"        tools:layout="@layout/fragment_patient_fragment" >        <action            android:id="@+id/action_patient_fragment2_to_login"            app:destination="@id/login" />        <argument            android:name="name"            app:argType="string"            android:defaultValue="Doctor" />        <argument            android:name="email"            app:argType="string"            android:defaultValue="ssuet@gmail.com" />        <argument            android:name="Doc_name"            app:argType="string"            app:nullable="true"            android:defaultValue="Dr.Sam" />    </fragment>    <fragment        android:id="@+id/doctor_fragment2"        android:name="com.example.hospital.doctor_fragment.doctor_fragment"        android:label="fragment_doctor_fragment"        tools:layout="@layout/fragment_doctor_fragment" >        <action            android:id="@+id/action_doctor_fragment2_to_login"            app:destination="@id/login" />        <argument            android:name="name"            app:argType="string"            android:defaultValue="Doctor" />        <argument            android:name="Doc_name"            app:argType="string"            app:nullable="true"            android:defaultValue="Dr.Sam" />        <argument            android:name="email"            app:argType="string"            android:defaultValue="ssuet@gmail.com" />    </fragment></navigation>
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.hospital.login.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_patient"
+            app:destination="@id/patient" />
+        <action
+            android:id="@+id/action_login_to_signup"
+            app:destination="@id/signup" />
+    </fragment>
+    <fragment
+        android:id="@+id/patient"
+        android:name="com.example.hospital.Patient"
+        android:label="fragment_patient"
+        tools:layout="@layout/fragment_patient" >
+        <action
+            android:id="@+id/action_patient_to_patient_fragment2"
+            app:destination="@id/patient_fragment2" />
+        <action
+            android:id="@+id/action_patient_to_doctor_fragment2"
+            app:destination="@id/doctor_fragment2" />
+        <action
+            android:id="@+id/action_patient_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup"
+        android:name="com.example.hospital.signup.Signup"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup"
+        >
+        <action
+            android:id="@+id/action_signup_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/patient_fragment2"
+        android:name="com.example.hospital.patient_fragment.Patient_fragment"
+        android:label="fragment_patient_fragment"
+        tools:layout="@layout/fragment_patient_fragment" >
+        <action
+            android:id="@+id/action_patient_fragment2_to_login"
+            app:destination="@id/login" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="Doctor" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue="ssuet@gmail.com" />
+        <argument
+            android:name="Doc_name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Dr.Sam" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctor_fragment2"
+        android:name="com.example.hospital.doctor_fragment.doctor_fragment"
+        android:label="fragment_doctor_fragment"
+        tools:layout="@layout/fragment_doctor_fragment" >
+        <action
+            android:id="@+id/action_doctor_fragment2_to_login"
+            app:destination="@id/login" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="Doctor" />
+        <argument
+            android:name="Doc_name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Dr.Sam" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue="ssuet@gmail.com" />
+    </fragment>
+</navigation>

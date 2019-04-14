@@ -1,1 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?><layout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:tools="http://schemas.android.com/tools">    <data>        <variable            name="Login"            type="com.example.hospital.login.Login_ViewModel" />        <variable            name="Event"            type="com.example.hospital.login.Presenter"/>    </data>    <LinearLayout        android:layout_width="match_parent"        android:layout_height="match_parent"        android:gravity="center"        android:orientation="vertical"        tools:context=".login.Login">        <ImageView            style="@style/Login_Image"            android:background="@drawable/ic_medical"            />        <EditText            android:id="@+id/email"            style="@style/Login_Edit"            android:hint="Enter Email"            android:inputType="textEmailAddress"            android:text="@{Login.username}"            />        <EditText            android:id="@+id/password"            style="@style/Login_Edit"            android:inputType="textPassword"            android:hint="Enter Password"            android:text="@{Login.passowrd}"            />        <Button style="@style/Login_Button"            android:onClick="@{(v)->Event.Signin_Event()}"            />        <TextView style="@style/Login_Text"            android:onClick="@{(v)->Event.Signup_Event()}"            />    </LinearLayout></layout>
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="Login"
+            type="com.example.hospital.login.Login_ViewModel" />
+
+        <variable
+            name="Event"
+            type="com.example.hospital.login.Presenter"/>
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".login.Login">
+
+
+
+        <ImageView
+            style="@style/Login_Image"
+            android:background="@drawable/ic_medical"
+
+            />
+
+        <EditText
+            android:id="@+id/email"
+            style="@style/Login_Edit"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:text="@{Login.username}"
+
+            />
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/Login_Edit"
+            android:inputType="textPassword"
+            android:hint="Enter Password"
+            android:text="@{Login.passowrd}"
+
+            />
+
+        <Button style="@style/Login_Button"
+            android:onClick="@{(v)->Event.Signin_Event()}"
+            />
+
+
+        <TextView style="@style/Login_Text"
+            android:onClick="@{(v)->Event.Signup_Event()}"
+            />
+
+    </LinearLayout>
+
+</layout>
