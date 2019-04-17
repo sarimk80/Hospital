@@ -6,22 +6,23 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <TextView style="@style/Text_patientFragment"
+    <TextView
         android:id="@+id/patient_name"
-        />
+        style="@style/Text_patientFragment"
+        android:drawableStart="@drawable/ic_perm_identity_black_24dp" />
 
     <TextView
-        style="@style/Text_patientFragment"
-        android:layout_gravity="start"
         android:id="@+id/pulse"
-
-        />
-
-    <TextView
         style="@style/Text_patientFragment"
         android:layout_gravity="start"
-        android:id="@+id/temp"
+        android:drawableStart="@drawable/ic_favorite_black_24dp"
+        android:textSize="@dimen/_15sdp" />
 
-        />
+    <TextView
+        android:id="@+id/temp"
+        style="@style/Text_patientFragment"
+        android:layout_gravity="start"
+        android:drawableStart="@drawable/ic_local_hospital_black_24dp"
+        android:textSize="@dimen/_15sdp" />
 
 </LinearLayout>

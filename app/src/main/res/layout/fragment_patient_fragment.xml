@@ -18,6 +18,10 @@
             name="bluetooth"
             type="com.example.hospital.patient_fragment.Bluetooth_viewModel" />
 
+        <variable
+            name="Btevent"
+            type="com.example.hospital.patient_fragment.Bluetooth_event"/>
+
     </data>
 
     <LinearLayout
@@ -35,28 +39,22 @@
 
         <TextView
             style="@style/Text_patientFragment"
-            android:text="@{patient.email}" />
+            android:text="@{patient.email}"
+            android:textSize="@dimen/_15sdp" />
 
 
         <TextView
             style="@style/Text_patientFragment"
-            android:text="@{patient.doc_name}" />
+            android:text="@{patient.doc_name}"
+            android:textSize="@dimen/_10sdp" />
 
-        <TextView
-            android:id="@+id/temp"
-            style="@style/Text_patientFragment"
-            android:text="@{bluetooth.temp}" />
-
-        <TextView
-            android:id="@+id/pulse"
-            style="@style/Text_patientFragment"
-            android:text="@{bluetooth.pulse}" />
 
         <EditText
             android:id="@+id/call"
             style="@style/Login_Edit"
             android:layout_gravity="center"
-            android:hint="Enter phone no. +92" />
+            android:hint="Enter phone no. +92"
+            android:text="@{patient.phone_no}" />
 
         <Button
             style="@style/Login_Button"
@@ -64,6 +62,38 @@
 
             android:onClick="@{(v)->event.Send_location()}"
             android:text="Location" />
+
+        <TextView
+            android:id="@+id/temp"
+            style="@style/Text_patientFragment"
+            android:text="@{bluetooth.temp}"
+            android:textSize="@dimen/_15sdp"
+            android:drawableStart="@drawable/ic_favorite_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/pulse"
+            style="@style/Text_patientFragment"
+            android:text="@{bluetooth.pulse}"
+            android:textSize="@dimen/_15sdp"
+            android:drawableStart="@drawable/ic_local_hospital_black_24dp"
+            />
+
+        <Button
+            android:onClick="@{(v)->Btevent.Connect_bluetooth()}"
+            style="@style/Login_Button"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="Connect" />
+
+        <Button
+            android:onClick="@{(v)->Btevent.Disconnect_bluetooth()}"
+            style="@style/Login_Button"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="DisConnect"
+            android:padding="@dimen/_8sdp"
+            />
 
     </LinearLayout>
 

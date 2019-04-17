@@ -82,6 +82,7 @@ public class Patient extends Fragment {
                 bundle.putString("email", user_model.email);
                 bundle.putString("Doc_name", user_model.doctor);
                 bundle.putString("User_name",user_model.User_name);
+                bundle.putString("Phone_no",user_model.phone_no);
 
                 /*
                 This is a helper class which will determine if the login user in doctor or patient

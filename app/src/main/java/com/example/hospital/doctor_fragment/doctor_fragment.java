@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.hospital.R;
@@ -47,8 +48,9 @@ public class doctor_fragment extends Fragment {
     private Menu menu;//Initialization of menu variable
     FirebaseAuth auth;//Initialization of firebase auth which will give us the  current sign in user
     FragmentDoctorFragmentBinding doctorFragmentBinding; //Initialization of binding
-    ArrayList<String> list = new ArrayList<>(); //Initialization of array list which will hold the string values from the data base
-    ArrayAdapter<String> arrayAdapter;
+//    ArrayList<String> list = new ArrayList<>(); //Initialization of array list which will hold the string values from the data base
+    CustomAdapter arrayAdapter;
+    ArrayList<Bluetooth_model> bluetoothModelArrayList = new ArrayList<>();
 
 
     public doctor_fragment() {
@@ -99,10 +101,11 @@ public class doctor_fragment extends Fragment {
 
         doctorFragmentBinding.setDoctor(new Doctor_viewModel(doctor_model));//Name of the doctor binding
 
-        arrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.simple_spinner_item, R.id.patient_name, list);
+
+        Query query = FirebaseDatabase.getInstance().getReference("Bluetooth");
 
 
-        FirebaseDatabase.getInstance().getReference("Bluetooth").addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -116,20 +119,31 @@ public class doctor_fragment extends Fragment {
 
                     Bluetooth_model bluetooth_model = postSnapshot.getValue(Bluetooth_model.class);
 
-                    //Log.d("Doctor", String.valueOf(bluetooth_model.patient_name));
+                    Log.d("Doctor", String.valueOf(bluetooth_model.patient_name));
 
                     if (bluetooth_model.doctor_name.equals(getArguments().getString("User_name"))) {
 
 
-                        doctorFragmentBinding.setPatient(new Bluetooth_viewModel(bluetooth_model));
-                        list.add("Patient name: "+bluetooth_model.patient_name + " /n" + bluetooth_model.temp + " /n" + bluetooth_model.pulse);//Populating the list view
+//                        arrayAdapter=new CustomAdapter(getContext(),bluetooth_model);
+//
+//                        doctorFragmentBinding.listview.setAdapter(arrayAdapter);
+//                        arrayAdapter.notifyDataSetChanged();
+
+//                        doctorFragmentBinding.setPatient(new Bluetooth_viewModel(bluetooth_model));
+//                        list.add("Patient name: " + bluetooth_model.patient_name + System.lineSeparator() + bluetooth_model.temp + System.getProperty("line.separator") + bluetooth_model.pulse);//Populating the list view
+
+                        bluetoothModelArrayList.add(bluetooth_model);
 
                         Log.d("Doctor", bluetooth_model.pulse + bluetooth_model.temp + bluetooth_model.patient_name);
                     }
 
                 }
+
+                arrayAdapter = new CustomAdapter(getContext(),bluetoothModelArrayList);
+
                 doctorFragmentBinding.listview.setAdapter(arrayAdapter);
                 arrayAdapter.notifyDataSetChanged();
+
 
             }
 

@@ -118,6 +118,8 @@ public class Patient_fragment extends Fragment implements LocationListener {
 
         bluetooth = new Bluetooth(getContext());
         progressDialog = new ProgressDialog(getContext());
+
+
         return view;
     }
 
@@ -126,19 +128,32 @@ public class Patient_fragment extends Fragment implements LocationListener {
         super.onViewCreated(view, savedInstanceState);
         getLocation();
 
+        patientFragmentBinding.setBtevent(new Bluetooth_event() {
+            @Override
+            public void Connect_bluetooth() {
+                bluetooth.enable();
+            }
+
+            @Override
+            public void Disconnect_bluetooth() {
+                bluetooth.disable();
+            }
+        });
+
+
         /*
         This patient_model is getting its data from pervious activity that is
         patient class  and setting these values to the binding data
          */
 
-        Patient_model patient_model = new Patient_model("Patient name: " + getArguments().getString("User_name"), "Email id:  " + getArguments().getString("email"), "Doctor name " + getArguments().getString("Doc_name"));
+
+        Patient_model patient_model = new Patient_model("Patient name: " + getArguments().getString("User_name"), "Email id:  " + getArguments().getString("email"), "Doctor name " + getArguments().getString("Doc_name"), getArguments().getString("Phone_no"));
 
 
         patientFragmentBinding.setPatient(new Patient_viewModel(patient_model));
 
 
-        bluetooth.onStart(); // Enabling the bluetooth
-        bluetooth.enable();
+
 
         /*
         BLUETOOTH override methods
@@ -154,10 +169,12 @@ public class Patient_fragment extends Fragment implements LocationListener {
 
             @Override
             public void onBluetoothOn() {
-                progressDialog.dismiss();
+
+
                 try {
                     bluetooth.connectToAddress("00:18:E4:40:00:06");
                     toastSuccess("Connected");
+                    progressDialog.dismiss();
                 } catch (Exception e) {
                     toastError("Bluetooth is not in range");
                 }
@@ -198,8 +215,8 @@ public class Patient_fragment extends Fragment implements LocationListener {
             public void onMessage(String message) {
                 String string = message;
                 String[] parts = string.split(",");
-                String part1 = "Temperature: " + parts[0]; // 004
-                String part2 = "Pulse: " + parts[1]; // 034556
+                String part1 = "Temperature: " + parts[0] + (char) 0x00B0 + "C"; // 004
+                String part2 = "Pulse: " + parts[1] + "Bpm unit"; // 034556
 
                 Bluetooth_model bluetooth_model = new Bluetooth_model(part1, part2, getArguments().getString("Doc_name"), getArguments().getString("User_name"));
                 patientFragmentBinding.setBluetooth(new Bluetooth_viewModel(bluetooth_model));
@@ -268,14 +285,10 @@ public class Patient_fragment extends Fragment implements LocationListener {
     @Override
     public void onStop() {
         super.onStop();
-        if (bluetooth.isConnected() || bluetooth.isEnabled()) {
-            bluetooth.onStop();
-            bluetooth.disable();
-            bluetooth.disconnect();
 
-        } else {
+        bluetooth.onStop();
+        bluetooth.disable();
 
-        }
 
         locationManager.removeUpdates(this);
     }

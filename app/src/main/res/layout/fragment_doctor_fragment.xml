@@ -32,18 +32,18 @@
             style="@style/Text_patientFragment"
             android:text="@{Doctor.doctor}"
             />
-        <TextView
-            style="@style/Text_patientFragment"
-            android:text="@{Patient.patient_name}"
-            />
-        <TextView
-            style="@style/Text_patientFragment"
-            android:text="@{Patient.temp}"
-            />
-        <TextView
-            style="@style/Text_patientFragment"
-            android:text="@{Patient.pulse}"
-            />
+        <!--<TextView-->
+            <!--style="@style/Text_patientFragment"-->
+            <!--android:text="@{Patient.patient_name}"-->
+            <!--/>-->
+        <!--<TextView-->
+            <!--style="@style/Text_patientFragment"-->
+            <!--android:text="@{Patient.temp}"-->
+            <!--/>-->
+        <!--<TextView-->
+            <!--style="@style/Text_patientFragment"-->
+            <!--android:text="@{Patient.pulse}"-->
+            <!--/>-->
 
         <ListView
             android:id="@+id/listview"

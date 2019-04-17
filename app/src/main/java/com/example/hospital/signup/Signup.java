@@ -161,6 +161,7 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
                 2) The doctor name (in the case of the doctor it will be null).
                  */
                 doc_spi.setVisibility(View.GONE);
+                signupBinding.phone.setVisibility(View.GONE);
                 signupBinding.setEvent(new Presenter() {
                     @Override
                     public void Signup_Event() {
@@ -169,7 +170,7 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
 
                     @Override
                     public void Signin_Event() {
-                        UserSignup(select_spi.getSelectedItem().toString(), "null");
+                        UserSignup(select_spi.getSelectedItem().toString(), "null", "null");
                         /*
                         After the 5 sec of pressing the sign up button the user will be taken to sign in fragment
                          */
@@ -195,6 +196,7 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
                 2) The doctor name from the doc_spi.
                  */
                 doc_spi.setVisibility(View.VISIBLE);
+                signupBinding.phone.setVisibility(View.VISIBLE);
                 signupBinding.setEvent(new Presenter() {
                     @Override
                     public void Signup_Event() {
@@ -203,7 +205,7 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
 
                     @Override
                     public void Signin_Event() {
-                        UserSignup(select_spi.getSelectedItem().toString(), doc_spi.getSelectedItem().toString());
+                        UserSignup(select_spi.getSelectedItem().toString(), doc_spi.getSelectedItem().toString(), signupBinding.phone.getText().toString());
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -234,7 +236,7 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
     and password from the edit text and creates TWO databases one for auth and other
     for user other data like name, doctor , patient, doc_name etc.
      */
-    public void UserSignup(final String person, final String doc_name) {
+    public void UserSignup(final String person, final String doc_name, final String phone_no) {
 
         /*
         Validating the text from the edit text
@@ -243,6 +245,7 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
         String _email = signupBinding.email.getText().toString();//Getting the text from email edit text
         String _password = signupBinding.password.getText().toString();//Getting the text from password edit text
         String _User_name = signupBinding.name.getText().toString(); //Getting the text from user_name edit text
+
 
         /*
         Checking of email , password and user name field is empty if it is empty error toast will display
@@ -274,7 +277,7 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
                         5) User_name
                          */
 
-                        user_model = new User_model(person, String.valueOf(signupBinding.email.getText()), doc_name, _User_name);
+                        user_model = new User_model(person, String.valueOf(signupBinding.email.getText()), doc_name, _User_name, phone_no);
 
                         /*
                         Will create a data base in firebase with the name of
@@ -300,12 +303,14 @@ public class Signup extends Fragment implements AdapterView.OnItemSelectedListen
                                     signupBinding.email.setText("");
                                     signupBinding.password.setText("");
                                     signupBinding.name.setText("");
+                                    signupBinding.phone.setText("");
                                 } else if (task.isCanceled()) {
                                     Toasty.error(getContext(), "Error!!!!", Toast.LENGTH_LONG, true).show();
                                     progressDialog.dismiss();
                                     signupBinding.email.setText("");
                                     signupBinding.password.setText("");
                                     signupBinding.name.setText("");
+                                    signupBinding.phone.setText("");
                                 }
 
 
